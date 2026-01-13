@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChronoVox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif-display': ['Cinzel', 'serif', 'Noto Sans Gujarati', 'Noto Sans Devanagari', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC'],
+              sans: ['Inter', 'Noto Sans Gujarati', 'Noto Sans Devanagari', 'Noto Sans Arabic', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'sans-serif'],
+            },
+            animation: {
+              'shine': 'shine 8s linear infinite',
+            },
+            keyframes: {
+              'shine': {
+                '0%': { 'background-position': '0% 50%' },
+                '100%': { 'background-position': '200% 50%' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Importing Inter, Cinzel, and Noto Sans variants for global script support */
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap');
+
+      /* Mist Effect Styles */
+      :root {
+        /* Warm/Dusty gray for light mode (Stone-400ish) */
+        --mist-color: 168, 162, 158; 
+      }
+      .dark {
+        /* Cool/Spectral slate for dark mode (Slate-400ish) */
+        --mist-color: 148, 163, 184;
+      }
+
+      .mist-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events-none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .mist-layer {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background: 
+          radial-gradient(circle at 50% 50%, rgba(var(--mist-color), 0.08) 0%, transparent 60%),
+          radial-gradient(circle at 15% 25%, rgba(var(--mist-color), 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 85% 75%, rgba(var(--mist-color), 0.05) 0%, transparent 50%);
+        filter: blur(80px);
+        animation: mist-move 40s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+      
+      .mist-layer:nth-child(2) {
+        top: -30%;
+        left: -30%;
+        background: 
+          radial-gradient(circle at 30% 70%, rgba(var(--mist-color), 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 70% 30%, rgba(var(--mist-color), 0.07) 0%, transparent 50%);
+        animation-duration: 55s;
+        animation-direction: alternate-reverse;
+      }
+
+      @keyframes mist-move {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-3%, -2%) scale(1.05); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body class="bg-stone-50 dark:bg-[#0f172a] text-stone-900 dark:text-slate-200 transition-colors duration-300">
+    <div id="root"></div>
+  </body>
+</html>
